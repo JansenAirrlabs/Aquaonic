@@ -36,3 +36,62 @@
     transform: rotate(360deg);
   }
 }
+/* Grid container for positioning the graphs */
+.grid-container {
+  display: grid;
+  grid-template-areas: 
+    "top-left top-right"
+    "bottom-left bottom-right";
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+/* Define the grid areas for each graph */
+.top-left {
+  grid-area: top-left;
+}
+
+.top-right {
+  grid-area: top-right;
+}
+
+.bottom-left {
+  grid-area: bottom-left;
+}
+
+.bottom-right {
+  grid-area: bottom-right;
+}
+
+/* Style for the individual graph components */
+.graph {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.line-graph {
+  width: 100%;
+  height: 150px;
+}
+
+.error {
+  color: red;
+}
+
+.graph-container {
+  display:contents;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.graph {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.line-graph {
+  width: 100%;
+  height: 300px; /* Increased height to 300px */
+}
