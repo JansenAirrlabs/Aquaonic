@@ -95,27 +95,32 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Aquaponic Monitoring</h1>
+      <h1>Aquaponic M</h1>
       {loading && <p>Loading data...</p>}
       {error && <p className="error">{error}</p>}
       {!loading && !error && (
         <div className="grid-container">
           <div className="top-left">
             <LineGraph data={temperatureData} label="Temperature (°C)" />
+            <p>{temperatureData.length > 0 && `Latest: ${temperatureData[temperatureData.length - 1].y} °C`}</p>
           </div>
           <div className="top-right">
             <LineGraph data={ecData} label="EC" />
+            <p>{ecData.length > 0 && `Latest: ${ecData[ecData.length - 1].y}`}</p>
           </div>
           <div className="bottom-left">
             <LineGraph data={ppmData} label="PPM" />
+            <p>{ppmData.length > 0 && `Latest: ${ppmData[ppmData.length - 1].y}`}</p>
           </div>
           <div className="bottom-right">
             <LineGraph data={phData} label="pH" />
+            <p>{phData.length > 0 && `Latest: ${phData[phData.length - 1].y}`}</p>
           </div>
         </div>
       )}
     </div>
   );
+  
 };
 
 export default App;
