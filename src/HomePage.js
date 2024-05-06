@@ -101,8 +101,8 @@ const HomePage = () => {
       {!loading && !error && (
         <div className="grid-container">
           <div className="top-left">
-            <LineGraph data={temperatureData} label="Temperature (°C)" />
-            <p>{temperatureData.length > 0 && `Latest: ${temperatureData[temperatureData.length - 1].y} °C`}</p>
+            <LineGraph data={temperatureData} label="Temperature (°F)" />
+            <p>{temperatureData.length > 0 && `Latest: ${temperatureData[temperatureData.length - 1].y} °F`}</p>
           </div>
           <div className="top-right">
             <LineGraph data={ecData} label="EC" />

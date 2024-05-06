@@ -1,0 +1,41 @@
+.tab button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+  }
+  
+  .tab button.active {
+    background-color: #45a049; /* Darker shade of green */
+  }
+  
+  .tab button:hover {
+    background-color: #4CAF50; /* Green (same as default) */
+    opacity: 0.8; /* Adjust the opacity for a subtle hover effect */
+  }
+  .tab {
+    margin-top: 20px; /* Adjust the value as needed */
+  }
+  
+  .tab button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+  }
+  
+  .tab button.active {
+    background-color: #45a049; /* Darker shade of green */
+  }
+  
+  .tab button:hover {
+    background-color: #4CAF50; /* Green (same as default) */
+    opacity: 0.8; /* Adjust the opacity for a subtle hover effect */
+  }
+  

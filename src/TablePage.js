@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './TablePage.css'; // Import your CSS file
 
 function TablePage() {
   const [activeTab, setActiveTab] = useState('pH');
