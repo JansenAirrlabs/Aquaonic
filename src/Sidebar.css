@@ -1,0 +1,112 @@
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #333;
+  color: #fff;
+  transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.sidebar-header {
+  padding: 20px;
+  text-align: center;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 10px 20px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.toggle-collapse {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+.sidebar {
+  /* Your existing styles for the sidebar */
+  transition: width 0.3s ease;
+}
+
+.collapsed {
+  width: 60px; /* Adjust as needed */
+}
+
+.sidebar-menu {
+  display: block; /* Show sidebar menu by default */
+}
+
+.toggle-collapse {
+  display: none; /* Hide the collapse button by default */
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px; /* Collapse sidebar by default on smaller screens */
+  }
+
+  .collapsed .sidebar-menu {
+    display: none; /* Hide menu items when sidebar is collapsed */
+  }
+
+  .collapsed .toggle-collapse {
+    display: block; /* Display the collapse button only when sidebar is collapsed */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.navbar {
+  background-color: #333; /* Background color for the navbar */
+  color: #fff; /* Text color for the navbar */
+  height: 60px; /* Height of the navbar */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+}
+
+.navbar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navbar-menu li {
+  margin-right: 15px;
+}
+
+.navbar-menu li:last-child {
+  margin-right: 0;
+}
+
+.navbar-menu li a {
+  color: #fff; /* Text color for the menu items */
+  text-decoration: none;
+  font-size: 1rem;
+}
