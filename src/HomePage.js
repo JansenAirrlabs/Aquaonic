@@ -120,9 +120,7 @@ const HomePage = () => {
             {temperatureData.length > 0 ? (
               <>
                 <LineGraph data={temperatureData} label="Temperature (°F)" />
-                <p>Latest: {latestTemperature} °F</p>
-                <p>Latest Temperature: {latestTemperature} °F (Index: {latestTemperatureIndex})</p>
-                
+                <p>Latest Temperature: {latestTemperature} °F</p>
               </>
             ) : (
               <p>No data available for temperature.</p>
@@ -133,11 +131,7 @@ const HomePage = () => {
             {ecData.length > 0 ? (
               <>
                 <LineGraph data={ecData} label="EC" />
-                <p>Latest: {latestEC}</p>
-                <p>Latest EC: {latestEC} (Index: {latestECIndex})</p>
-
-
-
+                <p>Latest EC: {latestEC}</p>
               </>
             ) : (
               <p>No data available for EC.</p>
@@ -147,10 +141,7 @@ const HomePage = () => {
             {ppmData.length > 0 ? (
               <>
                 <LineGraph data={ppmData} label="PPM" />
-                <p>Latest: {latestPPM}</p>
-                <p>Latest PPM: {latestPPM} (Index: {latestPPMIndex})</p>
-
-                
+                <p>Latest PPM: {latestPPM}</p>
               </>
             ) : (
               <p>No data available for PPM.</p>
@@ -161,8 +152,7 @@ const HomePage = () => {
             {phData.length > 0 ? (
               <>
                 <LineGraph data={phData} label="pH" />
-                <p>Latest: {latestPH}</p>
-                <p>Latest pH: {latestPH} (Index: {latestPHIndex})</p>
+                <p>Latest pH: {latestPH}</p>
               </>
             ) : (
               <p>No data available for pH.</p>
