@@ -17,6 +17,8 @@ const LineGraph = ({ data, label }) => {
     return `${x},${y}`;
   }).join(' ');
 
+  console.log('Received props:', { data, label });
+
   return (
     <div className="graph-container">
       <div className="graph">
@@ -50,13 +52,13 @@ const HomePage = () => {
           }
         });
         const apiData = response.data.data;
-
+        console.log(apiData)
         const formattedTemperatureData = apiData.map(item => ({
           x: new Date(item.created_at).toLocaleTimeString(),
           y: parseFloat(item.temp)
         }));
         setTemperatureData(formattedTemperatureData);
-
+          
         const formattedEcData = apiData.map(item => ({
           x: new Date(item.created_at).toLocaleTimeString(),
           y: parseFloat(item.ec)
@@ -92,6 +94,21 @@ const HomePage = () => {
 
     return () => clearInterval(interval);
   }, []);
+  
+  // Calculate the latest values and IDs for each metric
+  const latestTemperatureIndex = temperatureData.length > 0 ? 0 : null;
+  const latestTemperature = latestTemperatureIndex !== null ? temperatureData[latestTemperatureIndex].y : null;
+  
+  const latestECIndex = ecData.length > 0 ? 0 : null;
+  const latestEC = latestECIndex !== null ? ecData[latestECIndex].y : null;
+  
+  const latestPPMIndex = ppmData.length > 0 ? 0 : null;
+  const latestPPM = latestPPMIndex !== null ? ppmData[latestPPMIndex].y : null;
+  
+  const latestPHIndex = phData.length > 0 ? 0 : null;
+  const latestPH = latestPHIndex !== null ? phData[latestPHIndex].y : null;
+
+  
 
   return (
     <div>
@@ -99,41 +116,53 @@ const HomePage = () => {
       {error && <p className="error">{error}</p>}
       {!loading && !error && (
         <div className="grid-container">
-          <div className={`top-left ${temperatureData.length > 0 ? 'green' : 'red'}`}>
+          <div className={`top-left ${temperatureData.length > 0 && temperatureData[0].y <= 0 ? 'red' : 'green'}`}>
             {temperatureData.length > 0 ? (
               <>
                 <LineGraph data={temperatureData} label="Temperature (°F)" />
-                <p>Latest: {temperatureData[temperatureData.length - 1].y} °F</p>
+                <p>Latest: {latestTemperature} °F</p>
+                <p>Latest Temperature: {latestTemperature} °F (Index: {latestTemperatureIndex})</p>
+                
               </>
             ) : (
               <p>No data available for temperature.</p>
             )}
           </div>
-          <div className={`top-right ${ecData.length > 0 ? 'green' : 'red'}`}>
+          <div className={`top-right ${ecData.length > 0 && ecData[0].y >= 0.78 && ecData[0].y <= 0.84 ? 'red' : 'green'}`}>
+
             {ecData.length > 0 ? (
               <>
                 <LineGraph data={ecData} label="EC" />
-                <p>Latest: {ecData[ecData.length - 1].y}</p>
+                <p>Latest: {latestEC}</p>
+                <p>Latest EC: {latestEC} (Index: {latestECIndex})</p>
+
+
+
               </>
             ) : (
               <p>No data available for EC.</p>
             )}
           </div>
-          <div className={`bottom-left ${ppmData.length > 0 ? 'green' : 'red'}`}>
+          <div className={`bottom-left ${ppmData.length > 0 && ppmData[0].y >= 383 && ppmData[0].y <= 395 ? 'red' : 'green'}`}>
             {ppmData.length > 0 ? (
               <>
                 <LineGraph data={ppmData} label="PPM" />
-                <p>Latest: {ppmData[ppmData.length - 1].y}</p>
+                <p>Latest: {latestPPM}</p>
+                <p>Latest PPM: {latestPPM} (Index: {latestPPMIndex})</p>
+
+                
               </>
             ) : (
               <p>No data available for PPM.</p>
             )}
           </div>
-          <div className={`bottom-right ${phData.length > 0 ? 'green' : 'red'}`}>
+          <div className={`bottom-right ${phData.length > 0 && phData[0].y > 10.9 ? 'red' : 'green'}`}>
+
             {phData.length > 0 ? (
               <>
                 <LineGraph data={phData} label="pH" />
-                <p>Latest: {phData[phData.length - 1].y}</p>
+                <p>Latest: {latestPH}</p>
+                <p>Latest pH: {latestPH} (Index: {latestPHIndex})</p>
               </>
             ) : (
               <p>No data available for pH.</p>

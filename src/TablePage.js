@@ -35,27 +35,51 @@ function TablePage() {
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
   // Function to download report
-  const downloadReport = () => {
-    // Create CSV content
-    let csvContent = "data:text/csv;charset=utf-8,";
-    
-    // Add header row
-    const headerRow = ["ID", "Temperature", "EC", "PPM", "pH", "Date Inserted"];
-    csvContent += headerRow.join(",") + "\n";
-    
-    // Add data rows
-    csvContent += data.map(item => Object.values(item).join(",")).join("\n");
-    
-    // Create a temporary anchor element
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "report.csv");
-    document.body.appendChild(link);
-    
-    // Trigger the download
-    link.click();
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { 
+      month: 'short', 
+      day: '2-digit', 
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    };
+    return date.toLocaleDateString('en-US', options);
   };
+
+// Function to download report
+const downloadReport = () => {
+  // Create CSV content
+  let csvContent = "data:text/csv;charset=utf-8,";
+  
+  // Add header row
+  const headerRow = ["ID", "pH", "PPM", "EC", "Temperature", "Date Inserted"];
+  csvContent += headerRow.join(",") + "\n";
+  
+  // Add data rows
+  csvContent += data.map(item => (
+    [
+      item.id,
+      item.ph,
+      item.ppm,
+      item.ec,
+      item.temp,
+      formatDate(item.created_at) // Format date here
+    ].join(",")
+  )).join("\n");
+  
+  // Create a temporary anchor element
+  const encodedUri = encodeURI(csvContent);
+  const link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", "report.csv");
+  document.body.appendChild(link);
+  
+  // Trigger the download
+  link.click();
+};
+  
 
   return (
     <div>

@@ -46,6 +46,13 @@
   padding: 20px;
 }
 
+.green {
+  background-color: #a0ffa0; /* Light green */
+}
+
+.red {
+  background-color: #ffaaaa; /* Light red */
+}
 /* Define the grid areas for each graph */
 .top-left {
   grid-area: top-left;
