@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
 const LineGraph = ({ data, label }) => {
   // Find the minimum and maximum y-values in the data
   const minY = Math.min(...data.map(point => point.y));
@@ -32,7 +31,6 @@ const LineGraph = ({ data, label }) => {
     </div>
   );
 };
-
 
 const HomePage = () => {
   const [temperatureData, setTemperatureData] = useState([]);
@@ -78,6 +76,7 @@ const HomePage = () => {
         setPhData(formattedPhData);
 
         setLoading(false); // Set loading to false once data is fetched
+        setError(''); // Reset error state if fetching was successful
       } catch (error) {
         console.error('Error fetching data:', error);
         setError('Error fetching data. Please try again.'); // Set error message
@@ -100,21 +99,45 @@ const HomePage = () => {
       {error && <p className="error">{error}</p>}
       {!loading && !error && (
         <div className="grid-container">
-          <div className="top-left">
-            <LineGraph data={temperatureData} label="Temperature (°F)" />
-            <p>{temperatureData.length > 0 && `Latest: ${temperatureData[temperatureData.length - 1].y} °F`}</p>
+          <div className={`top-left ${temperatureData.length > 0 ? 'green' : 'red'}`}>
+            {temperatureData.length > 0 ? (
+              <>
+                <LineGraph data={temperatureData} label="Temperature (°F)" />
+                <p>Latest: {temperatureData[temperatureData.length - 1].y} °F</p>
+              </>
+            ) : (
+              <p>No data available for temperature.</p>
+            )}
           </div>
-          <div className="top-right">
-            <LineGraph data={ecData} label="EC" />
-            <p>{ecData.length > 0 && `Latest: ${ecData[ecData.length - 1].y}`}</p>
+          <div className={`top-right ${ecData.length > 0 ? 'green' : 'red'}`}>
+            {ecData.length > 0 ? (
+              <>
+                <LineGraph data={ecData} label="EC" />
+                <p>Latest: {ecData[ecData.length - 1].y}</p>
+              </>
+            ) : (
+              <p>No data available for EC.</p>
+            )}
           </div>
-          <div className="bottom-left">
-            <LineGraph data={ppmData} label="PPM" />
-            <p>{ppmData.length > 0 && `Latest: ${ppmData[ppmData.length - 1].y}`}</p>
+          <div className={`bottom-left ${ppmData.length > 0 ? 'green' : 'red'}`}>
+            {ppmData.length > 0 ? (
+              <>
+                <LineGraph data={ppmData} label="PPM" />
+                <p>Latest: {ppmData[ppmData.length - 1].y}</p>
+              </>
+            ) : (
+              <p>No data available for PPM.</p>
+            )}
           </div>
-          <div className="bottom-right">
-            <LineGraph data={phData} label="pH" />
-            <p>{phData.length > 0 && `Latest: ${phData[phData.length - 1].y}`}</p>
+          <div className={`bottom-right ${phData.length > 0 ? 'green' : 'red'}`}>
+            {phData.length > 0 ? (
+              <>
+                <LineGraph data={phData} label="pH" />
+                <p>Latest: {phData[phData.length - 1].y}</p>
+              </>
+            ) : (
+              <p>No data available for pH.</p>
+            )}
           </div>
         </div>
       )}

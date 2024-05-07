@@ -39,3 +39,80 @@
     opacity: 0.8; /* Adjust the opacity for a subtle hover effect */
   }
   
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  table th,
+  table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  table th {
+    background-color: #f2f2f2;
+  }
+  
+  /* Hover effect on table rows */
+  table tbody tr:hover {
+    background-color: #f2f2f2;
+  }
+  
+  /* Pagination styles */
+  .pagination {
+    margin-top: 20px;
+  }
+  
+  .pagination ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .pagination li {
+    margin: 0 5px;
+  }
+  
+  .pagination li.active button {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    cursor: default;
+  }
+  
+  .pagination li button {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  .pagination li button:hover {
+    background-color: #f2f2f2;
+  }
+
+  .table-container {
+    display: flex;
+    justify-content: center;
+  }
+
+
+  .btn-warning {
+    background-color: #f0ad4e;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn-warning:hover {
+    background-color: #eea236;
+  }
+  
